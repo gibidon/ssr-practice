@@ -12,6 +12,7 @@ export default function CreateEvent() {
   });
 
   const handleSubmit = (data: CreateEventSchema) => {
+    console.log('creating event!')
     mutate(data);
   };
 

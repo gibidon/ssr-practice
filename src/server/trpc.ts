@@ -22,3 +22,10 @@ export const isAuth = t.middleware(async (opts) => {
     },
   });
 });
+
+// export const isOwner = t.middleware(async (opts) => {
+//   const {} = opts
+//   return opts.next({
+//     ctx:isOwner:
+//   })
+// })
