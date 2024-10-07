@@ -1,5 +1,6 @@
 import { RouterOutput } from "@/shared/api";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 type EventDetailProps = NonNullable<RouterOutput["event"]["findUnique"]>;
 
@@ -9,6 +10,9 @@ export const EventDetail = ({
   date,
   participations,
 }: EventDetailProps) => {
+  const router = useRouter()
+  const {id} = router.query
+
   return (
     <div>
       <div className="px-4 sm:px-0 flex justify-between">
@@ -16,7 +20,8 @@ export const EventDetail = ({
           Информация о событии
         </h3>
         <button className="px-2 py-1 font-semibold text-lg bg-blue-400 hover:bg-blue-500 text-white">
-          <Link href={'/events/update'}>
+          {/* <Link href={'/events/update'}> */}
+          <Link href={`/events/${id}/update`}>
             Редактировать событие
           </Link>
         </button>
