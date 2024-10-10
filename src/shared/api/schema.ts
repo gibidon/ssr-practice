@@ -13,6 +13,7 @@ export const UpdateEventSchema = z.object({
   title: z.string().min(1),
   description: z.string().optional(),
   date: z.coerce.date(),
+  // date: z.date(),
 })
 
 export type UpdateEventSchema = z.infer<typeof UpdateEventSchema>

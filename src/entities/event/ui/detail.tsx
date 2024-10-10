@@ -1,4 +1,5 @@
 import { RouterOutput } from "@/shared/api";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -9,9 +10,15 @@ export const EventDetail = ({
   description,
   date,
   participations,
+  authorId,
+  id:eventId
 }: EventDetailProps) => {
-  const router = useRouter()
-  const {id} = router.query
+  // const router = useRouter()
+  // const eventId = router.query.id
+
+  const session = useSession()
+  
+  const isOwner = session.data?.user.id === authorId
 
   return (
     <div>
@@ -19,12 +26,14 @@ export const EventDetail = ({
         <h3 className="text-base font-semibold leading-7 text-gray-900">
           Информация о событии
         </h3>
-        <button className="px-2 py-1 font-semibold text-lg bg-blue-400 hover:bg-blue-500 text-white">
-          {/* <Link href={'/events/update'}> */}
-          <Link href={`/events/${id}/update`}>
+        
+        {isOwner && <button className="px-2 py-1 font-semibold text-lg bg-blue-400 hover:bg-blue-500 text-white rounded-md">
+          <Link href={`/events/${eventId}/update`}>
             Редактировать событие
           </Link>
         </button>
+        }
+        
       </div>
       <div className="mt-6 border-t border-gray-100">
         <dl className="divide-y divide-gray-100">

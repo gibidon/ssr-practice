@@ -12,7 +12,6 @@ export const JoinEventButton = ({
   const { mutate } = trpc.event.join.useMutation({ onSuccess });
 
   const handleClick = () => {
-    console.log('click on jin btn')
     mutate({ id: eventId });
   };
 

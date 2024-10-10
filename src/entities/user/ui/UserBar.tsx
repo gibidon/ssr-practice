@@ -5,7 +5,6 @@ export const UserBar = () => {
     const session = useSession()
 
    if (session.status === 'authenticated'){
-    //TODO user icon
     return (<div className="flex items-center gap-2">
     <div className="font-semibold border-b text-lg">
         Welcome, {session.data.user.name}

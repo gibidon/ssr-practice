@@ -12,7 +12,6 @@ export const QuitEventButton = ({
   const { mutate } = trpc.event.quit.useMutation({ onSuccess });
 
   const handleClick = () => {
-    console.log('quitting event',eventId)
     mutate({ id: eventId });
   };
 

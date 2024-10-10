@@ -7,7 +7,8 @@ type EventCardProps = {
   title: string;
   description: string | null;
   date: Date;
-  action: ReactNode;
+  action?: ReactNode;
+  authorId:number
 };
 
 export const EventCard = ({
@@ -17,7 +18,6 @@ export const EventCard = ({
   date,
   action,
 }: EventCardProps) => {
-  console.log('action in EventCard:',action)
   return (
     <div className="flex font-sans rounded-lg shadow-xl overflow-hidden">
       <div className="flex-none w-48 relative">
