@@ -1,14 +1,28 @@
-import { useSession } from "next-auth/react"
 import Link from "next/link"
+import { useSession } from "next-auth/react"
+import { signOut } from "next-auth/react"
+import { NavButton } from "@/shared/ui/buttons/navButton"
+import { useRouter } from "next/router"
 
 export const UserBar = () => {
     const session = useSession()
+    const {pathname} = useRouter()   
+    const isRegistartionPage = pathname === '/registration' 
 
    if (session.status === 'authenticated'){
     return (<div className="flex items-center gap-2">
-    <div className="font-semibold border-b text-lg">
-        Welcome, {session.data.user.name}
-    </div>
+
+    
+    <div className="flex gap-1 border-b text-lg">
+        <span>
+            Welcome, {session.data.user.name}            
+        </span>
+        <button onClick={() => signOut()} 
+            className="px-3 py-2 font-semibold rounded-md text-white bg-red-300 hover:bg-red-400">
+                Log out
+        </button>
+    </div> 
+        
      <button className="px-3 py-2 font-semibold text-white bg-green-500 rounded-md hover:bg-green-600">
             <Link href={'/events/create'}>
                 Создать событие
@@ -20,12 +34,16 @@ export const UserBar = () => {
 
    return (
    <div className="flex gap-1">
-        <button className="px-4 py-2 font-semibold text-lg bg-blue-300 text-white rounded-md hover:bg-blue-400">
-            <Link href={'/api/auth/signin'}>
-                Log in
-            </Link>
-        </button>
-       
+        <NavButton 
+            href="/api/auth/signin"
+            className="px-4 py-2 font-semibold text-md border rounded-md hover:bg-gray-200"
+            text="Log in"
+        />
+        {!isRegistartionPage && <NavButton 
+            href="/registration"
+            className="px-4 py-2 font-semibold text-md border rounded-md hover:bg-gray-200"
+            text="Sign up"
+        />}
    </div>
    )
 }

@@ -13,9 +13,6 @@ export const EventDetail = ({
   authorId,
   id:eventId
 }: EventDetailProps) => {
-  // const router = useRouter()
-  // const eventId = router.query.id
-
   const session = useSession()
   
   const isOwner = session.data?.user.id === authorId

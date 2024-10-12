@@ -1,9 +1,11 @@
 import { router,procedure } from "../trpc";
 import { eventRouter } from "./event";
 import {z} from 'zod'
+import { userRouter } from "./user";
 
 export const appRouter = router({
   event: eventRouter,
+  user:userRouter,
   hello: procedure
     .input(
       z.object({
