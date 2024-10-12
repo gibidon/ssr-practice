@@ -25,3 +25,12 @@ export const JoinEventSchema = z.object({
 export const QuitEventSchema = z.object({
   id:z.number().int().positive()
 })
+
+export const RegistrationSchema = z.object({
+  name:z.string().nonempty(),
+  email:z.string().email(),
+  password:z.string().nonempty()
+})
+
+export type RegistrationEventSchema = z.infer<typeof RegistrationSchema>
+

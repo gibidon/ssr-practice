@@ -20,6 +20,7 @@ export const authOptions: NextAuthOptions = {
         });
 
         if (user?.password === credentials.password) {
+          console.log('user is:',user)
           return user;
         } else {
           return null;
@@ -33,6 +34,9 @@ export const authOptions: NextAuthOptions = {
       return session;
     },
   },
+  pages:{
+    newUser:'auth/new-user'
+  }
 };
 
 export default NextAuth(authOptions);
