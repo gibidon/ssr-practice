@@ -9,29 +9,7 @@ export const UserBar = () => {
     const {pathname} = useRouter()   
     const isRegistartionPage = pathname === '/registration' 
 
-   if (session.status === 'authenticated'){
-    return (<div className="flex items-center gap-2">
-
-    
-    <div className="flex gap-1 border-b text-lg">
-        <span>
-            Welcome, {session.data.user.name}            
-        </span>
-        <button onClick={() => signOut()} 
-            className="px-3 py-2 font-semibold rounded-md text-white bg-red-300 hover:bg-red-400">
-                Log out
-        </button>
-    </div> 
-        
-     <button className="px-3 py-2 font-semibold text-white bg-green-500 rounded-md hover:bg-green-600">
-            <Link href={'/events/create'}>
-                Создать событие
-            </Link>
-        </button>
-    </div>)
-    
-   }
-
+   if (session.status === 'authenticated'){    
    return (
    <div className="flex gap-1">
         <NavButton 
@@ -46,4 +24,4 @@ export const UserBar = () => {
         />}
    </div>
    )
-}
+}}
