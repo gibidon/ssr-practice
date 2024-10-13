@@ -8,6 +8,7 @@ export const createContext = async ({ req, res }: CreateNextContextOptions) => {
 
   return {
     user: session?.user,
+    extra:'extra'
   };
 };
 

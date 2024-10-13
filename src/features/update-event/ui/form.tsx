@@ -1,23 +1,20 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { CreateEventSchema } from "@/shared/api";
-import { useRouter } from "next/router";
+import { UpdateEventSchema } from "@/shared/api";
 
-type CreateEventFormProps = {
-  onSubmit: (data: CreateEventSchema) => void;
+type UpdateEventFormProps = {
+  onSubmit: (data: UpdateEventSchema) => void;
 };
 
-export const CreateEventForm = ({ onSubmit }: CreateEventFormProps) => {
+export const UpdateEventForm = ({ onSubmit }: UpdateEventFormProps) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<CreateEventSchema>({
-    resolver: zodResolver(CreateEventSchema),
+  } = useForm<UpdateEventSchema>({
+    resolver: zodResolver(UpdateEventSchema),
     mode: "onChange",
   });
-
-  const router = useRouter()
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -27,7 +24,7 @@ export const CreateEventForm = ({ onSubmit }: CreateEventFormProps) => {
             Событие
           </h2>
           <p className="mt-1 text-sm leading-6 text-gray-600">
-            Заполните форму для создания события
+            Заполните форму для редактирования события
           </p>
 
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
@@ -108,9 +105,7 @@ export const CreateEventForm = ({ onSubmit }: CreateEventFormProps) => {
       <div className="mt-6 flex items-center justify-end gap-x-6">
         <button
           type="button"
-          className="px-3 py-2 text-sm  border rounded-md font-semibold text-gray-900 hover:bg-slate-100"
-          onClick={() => router.back()}
-
+          className="text-sm font-semibold leading-6 text-gray-900"
         >
           Отмена
         </button>
@@ -118,7 +113,7 @@ export const CreateEventForm = ({ onSubmit }: CreateEventFormProps) => {
           type="submit"
           className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
         >
-          Создать
+          Сохранить
         </button>
       </div>
     </form>

@@ -7,7 +7,8 @@ type EventCardProps = {
   title: string;
   description: string | null;
   date: Date;
-  action: ReactNode;
+  action?: ReactNode;
+  authorId:number
 };
 
 export const EventCard = ({

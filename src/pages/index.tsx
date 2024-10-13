@@ -1,11 +1,10 @@
 import { EventCard } from "@/entities/event";
 import { JoinEventButton } from "@/features/join-event";
+import { QuitEventButton } from "@/features/quit-event";
 import { trpc } from "@/shared/api";
 
 export default function Home() {
-  const { data, refetch } = trpc.event.findMany.useQuery();
-  const {data:data2} = trpc.hello.useQuery({text:'42'})
-  
+  const { data, refetch } = trpc.event.findMany.useQuery();  
 
   return (
     <ul>
@@ -14,9 +13,9 @@ export default function Home() {
           <EventCard
             {...event}
             action={
-              !event.isJoined && (
-                <JoinEventButton eventId={event.id} onSuccess={refetch} />
-              )
+              !event.isJoined 
+                ? <JoinEventButton eventId={event.id} onSuccess={refetch} />
+                : <QuitEventButton eventId={event.id} onSuccess={refetch} />
             }
           />
         </li>

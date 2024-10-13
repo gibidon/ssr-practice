@@ -6,6 +6,7 @@ import { useSession } from "next-auth/react";
 export default function Event() {
   const router = useRouter();
   const session = useSession();
+  
 
   const { data, isLoading } = trpc.event.findUnique.useQuery({
     id: Number(router.query.id),
